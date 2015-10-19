@@ -1,0 +1,188 @@
+{
+  "spots#create": [
+    {
+      "verb": "POST",
+      "path": "/spots",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": {
+        "spot": {
+          "name": "My Spot",
+          "lat": 45,
+          "lon": -73,
+          "water_type": "small stream",
+          "technique": "dry fly",
+          "notes": "Great spot! multiple strikes on size 12 orange stimulator when the sun hit the water around 11am.  Slippery rocks, bring traction shoes next time"
+        }
+      },
+      "response_data": {
+        "spot": {
+          "id": 434526334,
+          "name": "My Spot",
+          "lat": 45,
+          "lon": -73,
+          "water_type": "small stream",
+          "technique": "dry fly",
+          "notes": "Great spot! multiple strikes on size 12 orange stimulator when the sun hit the water around 11am.  Slippery rocks, bring traction shoes next time",
+          "created_at": "2015-10-19T22:30:56.430Z",
+          "updated_at": "2015-10-19T22:30:56.430Z"
+        }
+      },
+      "code": 201,
+      "show_in_doc": 1,
+      "recorded": true
+    },
+    {
+      "verb": "POST",
+      "path": "/spots",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": {
+        "spot": {
+          "name": "new, spot"
+        }
+      },
+      "response_data": {
+        "lat": [
+          "can't be blank"
+        ],
+        "lon": [
+          "can't be blank"
+        ]
+      },
+      "code": 422,
+      "show_in_doc": 0,
+      "recorded": true
+    }
+  ],
+  "spots#destroy": [
+    {
+      "verb": "DELETE",
+      "path": "/spots/434526333",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": null,
+      "response_data": {
+        "message": "Spot deleted"
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    }
+  ],
+  "spots#index": [
+    {
+      "verb": "GET",
+      "path": "/spots",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": null,
+      "response_data": {
+        "spots": [
+          {
+            "id": 434526333,
+            "name": "Spot One",
+            "lat": 45,
+            "lon": -73,
+            "water_type": "small stream",
+            "technique": "dry fly",
+            "notes": "Notes for one.",
+            "created_at": "2015-10-19T22:30:56.000Z",
+            "updated_at": "2015-10-19T22:30:56.000Z"
+          }
+        ]
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    }
+  ],
+  "spots#show": [
+    {
+      "verb": "GET",
+      "path": "/spots/434526333",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": null,
+      "response_data": {
+        "spot": {
+          "id": 434526333,
+          "name": "Spot One",
+          "lat": 45,
+          "lon": -73,
+          "water_type": "small stream",
+          "technique": "dry fly",
+          "notes": "Notes for one.",
+          "created_at": "2015-10-19T22:30:56.000Z",
+          "updated_at": "2015-10-19T22:30:56.000Z"
+        }
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    }
+  ],
+  "spots#update": [
+    {
+      "verb": "PATCH",
+      "path": "/spots/434526333",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": {
+        "spot": {
+          "name": "New name"
+        }
+      },
+      "response_data": {
+        "spot": {
+          "id": 434526333,
+          "name": "New name",
+          "lat": 45,
+          "lon": -73,
+          "water_type": "small stream",
+          "technique": "dry fly",
+          "notes": "Notes for one.",
+          "created_at": "2015-10-19T22:30:56.000Z",
+          "updated_at": "2015-10-19T22:30:56.515Z"
+        }
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    },
+    {
+      "verb": "PATCH",
+      "path": "/spots/434526333",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": {
+        "spot": {
+          "name": ""
+        }
+      },
+      "response_data": {
+        "name": [
+          "can't be blank",
+          "is too short (minimum is 1 character)"
+        ]
+      },
+      "code": 422,
+      "show_in_doc": 0,
+      "recorded": true
+    }
+  ]
+}
