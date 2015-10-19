@@ -1,28 +1,9 @@
-== README
+# Secret Spot Saver | A Fisherman's Companion
+#### An app to keep all of your favorite fishing spots securely.  See nearby locations and get directions via Google Maps integration.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+by [Matthew Yang](http://matthewgyang.com)
 
-Things you may want to cover:
+## Description
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+## Technology Used
+This application utilizes a [Ruby on Rails](http://rubyonrails.org/) back-end as an API for an [Angular.JS](https://angularjs.org) front end, single page application.
