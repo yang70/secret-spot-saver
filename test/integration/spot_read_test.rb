@@ -1,6 +1,9 @@
 require "test_helper"
 
 class SpotsGetTest < ActionDispatch::IntegrationTest
+  def setup
+    sign_in("matt")
+  end
 
   test 'returns all spots' do
     get '/spots', {}, { Accept: Mime::JSON }

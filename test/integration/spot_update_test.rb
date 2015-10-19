@@ -1,6 +1,9 @@
 require "test_helper"
 
 class SpotsPatchTest < ActionDispatch::IntegrationTest
+  def setup
+    sign_in("matt")
+  end
 
   test 'successful update' do
     patch "/spots/#{spots(:spot_1).id}",

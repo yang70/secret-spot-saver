@@ -1,7 +1,26 @@
 spot_1:
+  user: ruby
   name: Spot One
   lat: 45
   lon: -73
   water_type: small stream
   technique: dry fly
   notes: Notes for one.
+
+spot_2:
+  user: ruby
+  name: Spot Two
+  lat: 45
+  lon: -73
+  water_type: lake
+  technique: chironomid
+  notes: Notes for two.
+
+spot_3:
+  user: aaron
+  name: Spot Three
+  lat: 45
+  lon: -73
+  water_type: river
+  technique: dry with dropper
+  notes: Notes for three.

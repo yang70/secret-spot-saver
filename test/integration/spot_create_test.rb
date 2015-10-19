@@ -1,6 +1,9 @@
 require "test_helper"
 
 class SpotCreateTest < ActionDispatch::IntegrationTest
+  def setup
+    sign_in("matt")
+  end
 
   test 'creates a new spot' do
     post '/spots',
@@ -17,10 +20,12 @@ class SpotCreateTest < ActionDispatch::IntegrationTest
     assert_equal Mime::JSON, response.content_type
     spot = json(response.body)[:spot]
     assert_equal spot_url(spot[:id]), response.location
-    # curl -i -X POST -d 'product[name]=Emerald' http://api.rails-gemstore.dev/products
   end
 
   test 'does not create without a lattitude or longitude' do
+    post '/users/sign_in', { user: { email: "matt@example.com", password: "password" } }.to_json,
+    { Accept: Mime::JSON, 'Content-Type' => Mime::JSON.to_s }
+
     post '/spots',
       { spot: { name: "new, spot" } }.to_json,
       { Accept: Mime::JSON, 'Content-Type' => Mime::JSON.to_s }
