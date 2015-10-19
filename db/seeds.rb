@@ -5,3 +5,15 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+names = %w(Secret Spot, Favorite Spot, Trout Lake, Yakima River)
+
+water = %w(river, small stream, lake, river)
+
+technique = %w(nymph, dry w/ dropper, chironomid, dry)
+
+notes = %(Tons of big fish!, This is my favorite spot in the world!, Nice lake with easy access and plenty of fish, Great dry fly fishing!)
+
+(0..3).each do |index|
+  Spot.create!(name: names[index], lat: 45, lon: -73, water_type: water[index], technique: technique[index], notes: notes[index])
+end
