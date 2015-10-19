@@ -15,7 +15,7 @@ class SpotCreateTest < ActionDispatch::IntegrationTest
       { Accept: Mime::JSON, 'Content-Type' => Mime::JSON.to_s }
     assert_equal 201, response.status
     assert_equal Mime::JSON, response.content_type
-    spot = json(response.body)
+    spot = json(response.body)[:spot]
     assert_equal spot_url(spot[:id]), response.location
     # curl -i -X POST -d 'product[name]=Emerald' http://api.rails-gemstore.dev/products
   end
