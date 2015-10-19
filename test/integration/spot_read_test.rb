@@ -11,10 +11,9 @@ class SpotsGetTest < ActionDispatch::IntegrationTest
   end
 
   test 'returns spot by id' do
-    spot = spot.find_by(name: "Spot One")
-    get "/spots/#{spot.id}"
+    get "/spots/#{spots(:spot_1).id}"
     assert_equal 200, response.status
-    spot = json(response.body)
+    spot = json(response.body)[:spot]
     assert_equal "Notes for one.", spot[:notes]
   end
 end

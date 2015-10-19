@@ -18,6 +18,21 @@ class SpotsController < ApplicationController
     end
   end
 
+  def update
+    spot = Spot.find(params[:id])
+    if spot.update(spot_params)
+      render json: spot, status: 200
+    else
+      render json: spot.errors, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    spot = Spot.find(params[:id])
+    spot.destroy
+    render json: { message: "Spot deleted" }, status: 200
+  end
+
   private
 
   def spot_params
