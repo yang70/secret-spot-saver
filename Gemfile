@@ -11,6 +11,7 @@ gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
 gem 'active_model_serializers'
 gem 'pry-rails', group: :development
+gem 'apipie-rails'
 
 group :development, :test do
   gem 'byebug'

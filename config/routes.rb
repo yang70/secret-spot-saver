@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  apipie
   root 'landing#index'
 
   resources :spots
