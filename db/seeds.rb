@@ -17,3 +17,5 @@ notes = %(Tons of big fish!, This is my favorite spot in the world!, Nice lake w
 (0..3).each do |index|
   Spot.create!(name: names[index], lat: 45, lon: -73, water_type: water[index], technique: technique[index], notes: notes[index])
 end
+
+User.create!(email: "matt@example.com", password: "password", password_confirmation: "password")
