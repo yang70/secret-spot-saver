@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/yang70/secret-spot-saver.png?label=ready&title=Ready)](https://waffle.io/yang70/secret-spot-saver)
 # Secret Spot Saver | A Fisherman's Companion
 #### An app to keep all of your favorite fishing spots securely.  See nearby locations and get directions via Google Maps integration.
 
