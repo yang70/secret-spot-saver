@@ -10,6 +10,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
 gem 'active_model_serializers'
+gem 'pry-rails', group: :development
 
 group :development, :test do
   gem 'byebug'
@@ -23,5 +24,4 @@ end
 group :development do
   gem 'spring'
   gem 'web-console', '~> 2.0'
-  gem 'pry-rails'
 end
