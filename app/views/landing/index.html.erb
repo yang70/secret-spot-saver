@@ -1,1 +1,57 @@
-<h1>Secret Spot Saver</h1>
+<main ng-app="secretSpots">
+  <header>
+    <h1>Secret Spot Saver</h1>
+  </header>
+
+  <section ng-controller="signInCtrl as user" ng-hide="isAuthenticated">
+    <div ng-hide="isAuthenticated">
+      <h2 ng-hide="showSignUp">Sign In</h2>
+      <form ng-submit="user.signIn()" ng-hide="showSignUp" novalidate>
+        <div>
+          <label for="inputEmail">Email Address</label>
+          <input type="email" id="inputEmail" placeholder="Enter email" ng-model="user.credentials.email">
+        </div>
+        <div>
+          <label for="inputPassword">Password</label>
+          <input type="password" id="inputPassword" placeholder="Password" ng-model="user.credentials.password">
+        </div>
+        <input type="submit" value="Sign In" />
+      </form>
+      <div ng-hide="showSignUp">
+        <p>Not a member?</p>
+        <button ng-click="showSignUp = true">Sign up!</button>
+      </div>
+      <div ng-show="showSignUp">
+        <form ng-submit="user.signUp()">
+          <div>
+            <label for="inputEmail">Email Address</label>
+            <input type="email" id="newEmail" placeholder="Enter email" ng-model="user.newUser.email">
+          </div>
+          <div>
+            <label for="inputPassword">Password</label>
+            <input type="password" id="newPassword" placeholder="Password" ng-model="user.newUser.password">
+          </div>
+          <div>
+            <label for="inputPasswordConfirmation">Confirm Password</label>
+            <input type="password" id="newPasswordConfirmation" placeholder="Confirm Password" ng-model="user.newUser.password_confirmation">
+          </div>
+          <input type="submit" value="Sign Up" />
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <div ng-controller="sessionCtrl as session" ng-show="isAuthenticated">
+      <button ng-click="session.logout()" />Logout</button>
+  </div>
+
+  <section ng-controller="SpotsController as spotsCtrl" ng-show="isAuthenticated">
+
+    <!-- map to go here -->
+
+    <div ng-repeat="spot in spots">
+      <h3>{{spot.name}}</h3>
+      <p>{{spot.notes}}</p>
+    </div>
+  </section>
+</main>

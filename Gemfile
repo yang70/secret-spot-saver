@@ -13,6 +13,7 @@ gem 'active_model_serializers'
 gem 'pry-rails', group: :development
 gem 'apipie-rails'
 gem 'devise'
+gem 'angular_rails_csrf'
 
 group :development, :test do
   gem 'byebug'

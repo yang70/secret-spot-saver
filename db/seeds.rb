@@ -6,13 +6,13 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-names = %w(Secret Spot, Favorite Spot, Trout Lake, Yakima River)
+names = %w(Secret\ Spot Favorite\ Spot Trout\ Lake Yakima\ River)
 
-water = %w(river, small stream, lake, river)
+water = %w(river small\ stream lake river)
 
-technique = %w(nymph, dry w/ dropper, chironomid, dry)
+technique = %w(nymph dry\ w/\ dropper chironomid dry)
 
-notes = %(Tons of big fish!, This is my favorite spot in the world!, Nice lake with easy access and plenty of fish, Great dry fly fishing!)
+notes = %w(Tons\ of\ big\ fish! This\ is\ my\ favorite\ spot\ in\ the\ world! Nice\ lake\ with\ easy\ access\ and\ plenty\ of\ fish Great\ dry\ fly\ fishing!)
 
 User.create!(email: "matt@example.com", password: "password", password_confirmation: "password")
 

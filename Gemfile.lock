@@ -38,6 +38,8 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    angular_rails_csrf (1.0.4)
+      rails (>= 3, < 5)
     ansi (1.5.0)
     apipie-rails (0.3.4)
       json
@@ -176,6 +178,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers
+  angular_rails_csrf
   apipie-rails
   byebug
   coffee-rails (~> 4.1.0)
