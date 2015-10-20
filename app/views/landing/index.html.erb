@@ -46,8 +46,10 @@
   </div>
 
   <section ng-controller="SpotsController as spotsCtrl" ng-show="isAuthenticated">
-
-    <!-- map to go here -->
+    <div ng-if="isAuthenticated">
+      <ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
+    </div>
+    <button ng-click="spotsCtrl.centerMapOnUser()">Find Me</button>
 
     <div ng-repeat="spot in spots">
       <h3>{{spot.name}}</h3>

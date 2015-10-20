@@ -1,12 +1,43 @@
 (function(){
-  var app = angular.module('secretSpots', ['Devise']);
+  var app = angular.module('secretSpots', [
+                                           'Devise',
+                                           'uiGmapgoogle-maps'
+                                           ])
+    .config(function(uiGmapGoogleMapApiProvider) {
+      uiGmapGoogleMapApiProvider.configure({
+        key: 'AIzaSyAb4FKzgUIBNHbKfAbfwbEjJbH_ORh_WSQ',
+        v: '3.20', //defaults to latest 3.X anyhow
+        libraries: 'weather,geometry,visualization'
+      });
+    })
 
   app.controller('SpotsController', ['Auth', '$scope', '$http', function(Auth, $scope, $http){
     $scope.spots = [];
+    $scope.map = { center: {
+                           latitude: 47.6,
+                           longitude: -122.3
+                                         },
+                          zoom: 15,
+                  };
+
+    this.centerMapOnUser = function(){
+      navigator.geolocation.getCurrentPosition(function(position) {
+          $scope.map.center = {
+              latitude: position.coords.latitude,
+              longitude: position.coords.longitude
+          };
+          $scope.$apply();
+        }, function(error) {
+          console.log(error);
+        }
+      );
+    }
 
     $scope.$on('devise:login', function(event, currentUser){
       $http.get("/spots").success(function(data){
         $scope.spots = data.spots;
+        $scope.map.center = { latitude: $scope.spots[0].lat,
+                              longitude: $scope.spots[0].lon }
       }).error(function(data){
         console.log(data);
       });

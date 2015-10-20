@@ -3,8 +3,8 @@ class CreateSpots < ActiveRecord::Migration
     create_table :spots do |t|
       t.belongs_to :user, index: true
       t.string :name
-      t.integer :lat
-      t.integer :lon
+      t.decimal :lat
+      t.decimal :lon
       t.string :water_type
       t.string :technique
       t.text :notes

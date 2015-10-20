@@ -19,8 +19,8 @@ ActiveRecord::Schema.define(version: 20151019223659) do
   create_table "spots", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "name"
-    t.integer  "lat"
-    t.integer  "lon"
+    t.decimal  "lat"
+    t.decimal  "lon"
     t.string   "water_type"
     t.string   "technique"
     t.text     "notes"
