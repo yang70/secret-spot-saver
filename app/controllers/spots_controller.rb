@@ -1,5 +1,4 @@
 class SpotsController < ApplicationController
-  before_action :authenticate_user!
   # DOC GENERATED AUTOMATICALLY: REMOVE THIS LINE TO PREVENT REGENARATING NEXT TIME
   api :GET, '/spots', 'List spots'
   def index

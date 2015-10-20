@@ -14,8 +14,6 @@ technique = %w(nymph, dry w/ dropper, chironomid, dry)
 
 notes = %(Tons of big fish!, This is my favorite spot in the world!, Nice lake with easy access and plenty of fish, Great dry fly fishing!)
 
-User.create!(email: "matt@example.com", password: "password", password_confirmation: "password")
-
 (0..3).each do |index|
-  Spot.create!(user: User.find_by(email: "matt@example.com"), name: names[index], lat: 45, lon: -73, water_type: water[index], technique: technique[index], notes: notes[index])
+  Spot.create!(name: names[index], lat: 45, lon: -73, water_type: water[index], technique: technique[index], notes: notes[index])
 end
