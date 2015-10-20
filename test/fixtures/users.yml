@@ -5,10 +5,10 @@
 # below each fixture, per the syntax in the comments below
 #
 ruby:
-  email: matt@example.com
+  email: ruby@example.com
   encrypted_password: <%= User.new.send(:password_digest, 'password') %>
 
 
 aaron:
-  email: hope@example.com
+  email: aaron@example.com
   encrypted_password: <%= User.new.send(:password_digest, 'password') %>

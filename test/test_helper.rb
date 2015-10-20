@@ -18,5 +18,11 @@ def sign_in(name)
   { user: { email: "#{name}@example.com", password: "password" } }.to_json,
   { Accept: Mime::JSON, 'Content-Type' => Mime::JSON.to_s }
   confirm_sign_in = json(response.body)
-  assert_equal confirm_sign_in[:email], "matt@example.com"
+  assert_equal confirm_sign_in[:email], "ruby@example.com"
+end
+
+def sign_out()
+  delete '/users/sign_out'
+  confirm_sign_out = response.status
+  assert_equal confirm_sign_out, 302
 end
