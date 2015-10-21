@@ -47,13 +47,25 @@
 
   <section ng-controller="SpotsController as spotsCtrl" ng-show="isAuthenticated">
     <div ng-if="isAuthenticated">
-      <ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
+      <ui-gmap-google-map center='map.center' zoom='map.zoom' pan="true">
+        <ui-gmap-markers models="spotMarkers" coords="'self'" click="onClick">
+          <ui-gmap-windows show="show">
+            <div ng-non-bindable>
+              <p><strong>{{name}}</strong></p>
+              <p><strong>Water Type: </strong>{{waterType}}</p>
+              <p><strong>Technique: </strong>{{technique}}</p>
+              <p><strong>Created: </strong>{{createdOn | date }}</p>
+            </div>
+          </ui-gmap-windows>
+        </ui-gmap-markers>
+      </ui-gmap-google-map>
     </div>
-    <button ng-click="spotsCtrl.centerMapOnUser()">Find Me</button>
+    <button ng-click="centerMapOnUser()">Find Me</button>
 
     <div ng-repeat="spot in spots">
       <h3>{{spot.name}}</h3>
       <p>{{spot.notes}}</p>
+      <button ng-click="centerOnSpot(spot)">Show in map</button>
     </div>
   </section>
 </main>

@@ -13,14 +13,23 @@
 
   app.controller('SpotsController', ['Auth', '$scope', '$http', function(Auth, $scope, $http){
     $scope.spots = [];
+    $scope.spotMarkers = []
     $scope.map = { center: {
                            latitude: 47.6,
                            longitude: -122.3
                                          },
-                          zoom: 15,
+                            zoom: 15,
                   };
+    $scope.windowOptions = {
+      visible: false
+    };
 
-    this.centerMapOnUser = function(){
+    $scope.onClick = function(model) {
+        console.log("Clicked!");
+        model.show = !model.show;
+    };
+
+    $scope.centerMapOnUser = function(){
       navigator.geolocation.getCurrentPosition(function(position) {
           $scope.map.center = {
               latitude: position.coords.latitude,
@@ -31,13 +40,44 @@
           console.log(error);
         }
       );
+    };
+
+    $scope.centerOnSpot = function(spot){
+      $scope.map.center = { latitude: parseFloat(spot.lat), longitude: parseFloat(spot.lon) }
+    };
+
+    $scope.initialCenter = function(){
+      if($scope.spots.length == 0){
+        $scope.centerMapOnUser();
+      }else{
+        $scope.centerOnSpot($scope.spots[0]);
+      }
+    };
+
+    $scope.createMarkers = function(){
+      var newMarker = {};
+      for(var i = 0; i < $scope.spots.length; i++){
+        newMarker.id = parseFloat($scope.spots[i].id)
+        newMarker.latitude = parseFloat($scope.spots[i].lat);
+        newMarker.longitude = parseFloat($scope.spots[i].lon);
+        newMarker.name = $scope.spots[i].name;
+        newMarker.waterType = $scope.spots[i].water_type;
+        newMarker.technique = $scope.spots[i].technique;
+        newMarker.createdOn = $scope.spots[i].created_at;
+        newMarker.show = false;
+        $scope.spotMarkers.push(newMarker);
+        console.log(newMarker)
+        console.log($scope.spots[i])
+        newMarker = {};
+      }
+      console.log($scope.markers);
     }
 
     $scope.$on('devise:login', function(event, currentUser){
       $http.get("/spots").success(function(data){
         $scope.spots = data.spots;
-        $scope.map.center = { latitude: $scope.spots[0].lat,
-                              longitude: $scope.spots[0].lon }
+        $scope.initialCenter();
+        $scope.createMarkers();
       }).error(function(data){
         console.log(data);
       });
