@@ -12,6 +12,9 @@
 //
 //= require angular
 //= require angular-devise
+//= require lodash
+//= require angular-simple-logger
+//= require angular-google-maps
 //= require secretSpotApp/app
 //= require jquery
 //= require jquery_ujs
