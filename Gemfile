@@ -14,6 +14,7 @@ gem 'pry-rails', group: :development
 gem 'apipie-rails'
 gem 'devise'
 gem 'angular_rails_csrf'
+gem "jasmine"
 
 group :development, :test do
   gem 'byebug'
