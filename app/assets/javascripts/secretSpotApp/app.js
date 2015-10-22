@@ -11,7 +11,7 @@
       });
     })
 
-  app.controller('SpotsController', ['Auth', '$scope', '$http', function(Auth, $scope, $http){
+  app.controller('SpotsController', ['Auth', '$scope', '$http', '$window', function(Auth, $scope, $http, $window){
     $scope.spots = [];
     $scope.spotModel = { name: '',
                          lat: '',
@@ -75,6 +75,10 @@
           console.log(status);
         });
       });
+    };
+
+    $scope.directions = function(spot) {
+      $window.open('https://www.google.com/maps/dir/Current+Location/' + spot.lat + ',' + spot.lon)
     };
 
     $scope.editSpot = function(spot) {
