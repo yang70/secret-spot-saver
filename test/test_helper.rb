@@ -1,8 +1,9 @@
 Rails.env = "test"
+require 'coveralls'
+Coveralls.wear!
 require File.expand_path("../../config/environment", __FILE__)
 require "rails/test_help"
 require "minitest/reporters"
-require 'coveralls'
 
 
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
@@ -29,4 +30,4 @@ def sign_out()
   assert_equal confirm_sign_out, 302
 end
 
-Coveralls.wear!
+
