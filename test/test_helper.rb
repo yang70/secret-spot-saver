@@ -4,7 +4,6 @@ require "rails/test_help"
 require "minitest/reporters"
 require 'coveralls'
 
-Coveralls.wear!
 
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
@@ -29,3 +28,5 @@ def sign_out()
   confirm_sign_out = response.status
   assert_equal confirm_sign_out, 302
 end
+
+Coveralls.wear!
