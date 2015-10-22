@@ -8,4 +8,5 @@ deploy:
   app: spot-saver
   on: master
 before_script:
-  - psql -c 'create database secret-spot-saver_test;' -U postgres
+  - RAILS_ENV=test rake db:create
+  - RAILS_ENV=test rake db:migrate
