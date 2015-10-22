@@ -102,6 +102,7 @@
       <h3>{{spot.name}}</h3>
       <p>{{spot.notes}}</p>
       <button class="btn btn-default" ng-click="centerOnSpot(spot)">Show in map</button>
+      <button class="btn btn-default" ng-click="directions(spot)">Directions</button>
       <button class="btn btn-default" ng-click="deleteSpot(spot)">Delete</button>
       <button class="btn btn-default" ng-click="showEdit = !showEdit"><a ng-hide="showEdit">Edit Spot</a><a ng-show="showEdit">Cancel Edit</a></button>
       <div ng-show="showEdit">
