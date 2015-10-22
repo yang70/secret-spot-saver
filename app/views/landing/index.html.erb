@@ -1,56 +1,54 @@
 <main ng-app="secretSpots">
-  <header>
+  <div class="container">
     <h1>Secret Spot Saver</h1>
-  </header>
+  </div>
 
-  <section ng-controller="signInCtrl as user" ng-hide="isAuthenticated">
+  <div class="container" ng-controller="signInCtrl as user" ng-hide="isAuthenticated">
     <div ng-hide="isAuthenticated">
-      <h2 ng-hide="showSignUp">Sign In</h2>
-      <form ng-submit="user.signIn()" ng-hide="showSignUp" novalidate>
-        <div>
+      <form class="form-signin" ng-submit="user.signIn()" ng-hide="showSignUp" novalidate>
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <fieldset class="form-group">
           <label for="inputEmail">Email Address</label>
-          <input type="email" id="inputEmail" placeholder="Enter email" ng-model="user.credentials.email">
-        </div>
-        <div>
+          <input class="form-control" type="email" id="inputEmail" placeholder="Enter email" ng-model="user.credentials.email">
+        </fieldset>
+        <fieldset class="form-group">
           <label for="inputPassword">Password</label>
-          <input type="password" id="inputPassword" placeholder="Password" ng-model="user.credentials.password">
-        </div>
-        <input type="submit" value="Sign In" />
+          <input class="form-control" type="password" id="inputPassword" placeholder="Password" ng-model="user.credentials.password">
+        </fieldset>
+        <input class="btn btn-lg btn-primary btn-block" type="submit" value="Submit" />
       </form>
       <div ng-hide="showSignUp">
         <p>Not a member?</p>
-        <button ng-click="showSignUp = true">Sign up!</button>
+        <button class="btn btn-default" ng-click="showSignUp = true">Sign up!</button>
       </div>
       <div ng-show="showSignUp">
+        <h2>Sign Up</h2>
         <form ng-submit="user.signUp()">
-          <div>
+          <fieldset class="form-group">
             <label for="inputEmail">Email Address</label>
-            <input type="email" id="newEmail" placeholder="Enter email" ng-model="user.newUser.email">
-          </div>
-          <div>
+            <input class="form-control" type="email" id="newEmail" placeholder="Enter email" ng-model="user.newUser.email">
+          </fieldset>
+          <fieldset class="form-group">
             <label for="inputPassword">Password</label>
-            <input type="password" id="newPassword" placeholder="Password" ng-model="user.newUser.password">
-          </div>
-          <div>
+            <input class="form-control" type="password" id="newPassword" placeholder="Password" ng-model="user.newUser.password">
+          </fieldset>
+          <fieldset class="form-group">
             <label for="inputPasswordConfirmation">Confirm Password</label>
-            <input type="password" id="newPasswordConfirmation" placeholder="Confirm Password" ng-model="user.newUser.password_confirmation">
-          </div>
-          <input type="submit" value="Sign Up" />
+            <input class="form-control" type="password" id="newPasswordConfirmation" placeholder="Confirm Password" ng-model="user.newUser.password_confirmation">
+          </fieldset>
+          <input class="btn btn-default" type="submit" value="Sign up!" />
+          <button class="btn btn-default" ng-click="showSignUp = false">Cancel</button>
         </form>
       </div>
     </div>
-  </section>
-
-  <div ng-controller="sessionCtrl as session" ng-show="isAuthenticated">
-      <button ng-click="session.logout()" />Logout</button>
   </div>
 
-  <section>
+  <div ng-controller="sessionCtrl as session" ng-show="isAuthenticated">
+      <button class="btn btn-default" ng-click="session.logout()" />Logout</button>
+  </div>
 
-  </section>
-
-  <section ng-controller="SpotsController as spotsCtrl" ng-show="isAuthenticated">
-    <div ng-if="isAuthenticated">
+  <section class="container" ng-controller="SpotsController as spotsCtrl" ng-show="isAuthenticated">
+    <div class="container" ng-if="isAuthenticated">
       <ui-gmap-google-map center='map.center' zoom='map.zoom' pan="true">
         <!-- <ui-gmap-drawing-manager options="drawingManagerOptions" control="drawingManagerControl"></ui-gmap-drawing-manager> -->
         <ui-gmap-markers models="spotMarkers" coords="'self'" click="onClick">
@@ -65,42 +63,16 @@
         </ui-gmap-markers>
       </ui-gmap-google-map>
     </div>
-    <button ng-click="centerMapOnUser()">Find Me</button>
-    <button ng-click="showQuickSpot = !showQuickSpot"><a ng-hide="showQuickSpot">Quick Spot</a><a ng-show="showQuickSpot">Cancel Quick Spot</a></button>
+    <button class="btn btn-default" ng-click="centerMapOnUser()">Find Me</button>
+    <button class="btn btn-default" ng-click="showQuickSpot = !showQuickSpot"><a ng-hide="showQuickSpot">Quick Spot</a><a ng-show="showQuickSpot">Cancel Quick Spot</a></button>
     <div ng-show="showQuickSpot">
       <form name="newQuickForm" ng-submit="quickSpot(newQuick)" novalidate>
-        <input ng-model="newQuick.name" type="text" placeholder="Spot Name" title="Name" />
-        <select name="waterType" ng-model="newQuick.waterType">
-          <option value="">water type (optional)</option>
-          <option value="river">river</option>
-          <option value="small stream">small stream</option>
-          <option value="lake">lake</option>
-          <option value="beach/salt water">beach/salt water</option>
-          <option value="other">other</option>
-        </select>
-        <select name="technique" ng-model="newQuick.technique">
-          <option value="">technique (optional)</option>
-          <option value="dry fly">dry fly</option>
-          <option value="chironomid">chironomid</option>
-          <option value="nymph">nymph</option>
-          <option value="swing">swing</option>
-          <option value="troll">troll</option>
-          <option value="other">other</option>
-        </select>
-        <textarea name="notes" ng-model="newQuick.notes" cols="30" rows="10"></textarea>
-        <input type="submit" value="Submit" />
-      </form>
-    </div>
-    <div ng-repeat="spot in spots">
-      <h3>{{spot.name}}</h3>
-      <p>{{spot.notes}}</p>
-      <button ng-click="centerOnSpot(spot)">Show in map</button>
-      <button ng-click="deleteSpot(spot)">Delete</button>
-      <button ng-click="showEdit = !showEdit"><a ng-hide="showEdit">Edit Spot</a><a ng-show="showEdit">Cancel Edit</a></button>
-      <div ng-show="showEdit">
-        <form name="editSpotForm" ng-submit="editSpot(spot)" novalidate>
-          <input ng-model="spot.name" type="text" placeholder="Spot Name" title="Name" />
-          <select name="waterType" ng-model="spot.waterType">
+        <h4>Spot will be created at current location</h4>
+        <fieldset class="form-group">
+          <input class="form-control" ng-model="newQuick.name" type="text" placeholder="Spot Name" title="Name" />
+        </fieldset>
+        <fieldset class="form-group">
+          <select class="form-control" name="waterType" ng-model="newQuick.waterType">
             <option value="">water type (optional)</option>
             <option value="river">river</option>
             <option value="small stream">small stream</option>
@@ -108,7 +80,9 @@
             <option value="beach/salt water">beach/salt water</option>
             <option value="other">other</option>
           </select>
-          <select name="technique" ng-model="spot.technique">
+        </fieldset>
+        <fieldset class="form-group">
+          <select class="form-control" name="technique" ng-model="newQuick.technique">
             <option value="">technique (optional)</option>
             <option value="dry fly">dry fly</option>
             <option value="chironomid">chironomid</option>
@@ -117,8 +91,49 @@
             <option value="troll">troll</option>
             <option value="other">other</option>
           </select>
-          <textarea name="notes" ng-model="spot.notes" cols="30" rows="10"></textarea>
-          <input type="submit" value="Submit" />
+        </fieldset>
+        <fieldset class="form-group">
+          <textarea class="form-control" name="notes" ng-model="newQuick.notes" cols="30" rows="10"></textarea>
+        </fieldset>
+        <input class="btn btn-default" type="submit" value="Submit" />
+      </form>
+    </div>
+    <div ng-repeat="spot in spots">
+      <h3>{{spot.name}}</h3>
+      <p>{{spot.notes}}</p>
+      <button class="btn btn-default" ng-click="centerOnSpot(spot)">Show in map</button>
+      <button class="btn btn-default" ng-click="deleteSpot(spot)">Delete</button>
+      <button class="btn btn-default" ng-click="showEdit = !showEdit"><a ng-hide="showEdit">Edit Spot</a><a ng-show="showEdit">Cancel Edit</a></button>
+      <div ng-show="showEdit">
+        <form name="editSpotForm" ng-submit="editSpot(spot)" novalidate>
+          <fieldset class="form-group">
+            <input class="form-control" ng-model="spot.name" type="text" placeholder="Spot Name" title="Name" />
+          </fieldset>
+          <fieldset class="form-group">
+            <select class="form-control" name="waterType" ng-model="spot.waterType">
+              <option value="">water type (optional)</option>
+              <option value="river">river</option>
+              <option value="small stream">small stream</option>
+              <option value="lake">lake</option>
+              <option value="beach/salt water">beach/salt water</option>
+              <option value="other">other</option>
+            </select>
+          </fieldset>
+          <fieldset class="form-group">
+            <select class="form-control" name="technique" ng-model="spot.technique">
+              <option value="">technique (optional)</option>
+              <option value="dry fly">dry fly</option>
+              <option value="chironomid">chironomid</option>
+              <option value="nymph">nymph</option>
+              <option value="swing">swing</option>
+              <option value="troll">troll</option>
+              <option value="other">other</option>
+            </select>
+          </fieldset>
+          <fieldset class="form-group">
+            <textarea class="form-control" name="notes" ng-model="spot.notes" cols="30" rows="10"></textarea>
+          </fieldset>
+          <input class="btn btn-default" type="submit" value="Submit" />
         </form>
       </div>
     </div>

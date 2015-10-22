@@ -13,10 +13,11 @@
 //= require angular
 //= require angular-devise
 //= require lodash
+//= require jquery
+//= require bootstrap
 //= require angular-simple-logger
 //= require angular-google-maps
 //= require secretSpotApp/app
-//= require jquery
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
