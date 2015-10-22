@@ -13,13 +13,16 @@
 
   app.controller('SpotsController', ['Auth', '$scope', '$http', '$window', function(Auth, $scope, $http, $window){
     $scope.spots = [];
-    $scope.spotModel = { name: '',
+    $scope.currentUserId = '';
+    $scope.spotModel = { user_id: '',
+                         name: '',
                          lat: '',
                          lon: '',
                          water_type: '',
                          technique: '',
                          notes: '' };
-    $scope.newQuick = { name: '',
+    $scope.newQuick = { user_id: '',
+                        name: '',
                         lat: '',
                         lon: '',
                         water_type: '',
@@ -53,10 +56,12 @@
     $scope.onClick = function(model) {
       console.log("Clicked!");
       model.show = !model.show;
+      console.log()
     };
 
     $scope.quickSpot = function(newQuick) {
       this.showQuickSpot = false;
+      $scope.newQuick.user_id = $scope.currentUserId;
       $scope.newQuick.name = newQuick.name;
       $scope.newQuick.water_type = newQuick.waterType;
       $scope.newQuick.technique = newQuick.technique;
@@ -154,6 +159,7 @@
     }
 
     $scope.$on('devise:login', function(event, currentUser){
+      $scope.currentUserId = currentUser.id;
       $http.get("/spots").success(function(data){
         $scope.spots = data.spots;
         $scope.initialCenter();

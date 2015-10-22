@@ -3,7 +3,7 @@ class SpotsController < ApplicationController
   # DOC GENERATED AUTOMATICALLY: REMOVE THIS LINE TO PREVENT REGENARATING NEXT TIME
   api :GET, '/spots', 'List spots'
   def index
-    spots = Spot.all
+    spots = policy_scope(Spot)
     render json: spots, status: 200
   end
 
@@ -11,6 +11,7 @@ class SpotsController < ApplicationController
   api :GET, '/spots/:id', 'Show a spot'
   def show
     spot = Spot.find(params[:id])
+    authorize spot
     render json: spot, status: 200
   end
 
@@ -27,6 +28,7 @@ class SpotsController < ApplicationController
   error code: 422
   def create
     spot = Spot.new(spot_params)
+    authorize spot
     if spot.save
       render json: spot, status: 201, location: spot
     else
@@ -43,6 +45,7 @@ class SpotsController < ApplicationController
   error code: 422
   def update
     spot = Spot.find(params[:id])
+    authorize spot
     if spot.update(spot_params)
       render json: spot, status: 200
     else
@@ -54,6 +57,7 @@ class SpotsController < ApplicationController
   api :DELETE, '/spots/:id', 'Destroy a spot'
   def destroy
     spot = Spot.find(params[:id])
+    authorize spot
     spot.destroy
     render json: { message: "Spot deleted" }, status: 200
   end
@@ -61,6 +65,6 @@ class SpotsController < ApplicationController
   private
 
   def spot_params
-    params.require(:spot).permit(:name, :lat, :lon, :water_type, :technique, :notes)
+    params.require(:spot).permit(:user_id, :name, :lat, :lon, :water_type, :technique, :notes)
   end
 end

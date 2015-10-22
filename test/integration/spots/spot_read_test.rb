@@ -5,7 +5,7 @@ class SpotsGetTest < ActionDispatch::IntegrationTest
     sign_in("ruby")
   end
 
-  test 'sign in, get index returns all spots' do
+  test 'sign in, get index returns all spots for user' do
     get '/spots', {}, { Accept: Mime::JSON }
     assert_equal 200, response.status
     assert_equal Mime::JSON, response.content_type
@@ -35,5 +35,16 @@ class SpotsGetTest < ActionDispatch::IntegrationTest
     assert_equal 401, response.status
     error = json(response.body)[:error]
     assert_equal error, "You need to sign in or sign up before continuing."
+  end
+
+  test 'sign in other user, gets the correct spots' do
+    sign_out
+    sign_in("aaron")
+    get '/spots', {}, { Accept: Mime::JSON }
+    assert_equal 200, response.status
+    assert_equal Mime::JSON, response.content_type
+    spots = json(response.body)[:spots]
+    assert_equal spots.length, 1
+    assert_equal "Notes for three.", spots.detect { |spot| spot[:name] == "Spot Three" }[:notes]
   end
 end

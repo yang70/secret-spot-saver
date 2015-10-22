@@ -8,7 +8,8 @@ class SpotCreateTest < ActionDispatch::IntegrationTest
   test 'sign in, creates a new spot' do
     post '/spots',
       { spot:
-        { name: 'My Spot',
+        { user_id: users(:ruby).id,
+          name: 'My Spot',
           lat: 45,
           lon: -73,
           water_type: 'small stream',
@@ -24,7 +25,8 @@ class SpotCreateTest < ActionDispatch::IntegrationTest
 
   test 'sign in, does not create without a lattitude or longitude' do
     post '/spots',
-      { spot: { name: "new, spot" } }.to_json,
+      { spot: { name: "new, spot",
+                user_id: users(:ruby).id } }.to_json,
       { Accept: Mime::JSON, 'Content-Type' => Mime::JSON.to_s }
     assert_equal 422, response.status
     assert_equal Mime::JSON, response.content_type
