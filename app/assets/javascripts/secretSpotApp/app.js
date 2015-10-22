@@ -7,39 +7,114 @@
       uiGmapGoogleMapApiProvider.configure({
         key: 'AIzaSyAb4FKzgUIBNHbKfAbfwbEjJbH_ORh_WSQ',
         v: '3.20', //defaults to latest 3.X anyhow
-        libraries: 'weather,geometry,visualization'
+        libraries: 'weather,geometry,visualization,drawing'
       });
     })
 
   app.controller('SpotsController', ['Auth', '$scope', '$http', function(Auth, $scope, $http){
     $scope.spots = [];
-    $scope.spotMarkers = []
+    $scope.spotModel = { name: '',
+                         lat: '',
+                         lon: '',
+                         water_type: '',
+                         technique: '',
+                         notes: '' };
+    $scope.newQuick = { name: '',
+                        lat: '',
+                        lon: '',
+                        water_type: '',
+                        technique: '',
+                        notes: '' };
+    $scope.spotMarkers = [];
     $scope.map = { center: {
                            latitude: 47.6,
                            longitude: -122.3
                                          },
-                            zoom: 15,
+                   zoom: 15
                   };
     $scope.windowOptions = {
       visible: false
     };
 
+    // $scope.drawingManagerOptions = {
+    //   drawingMode: google.maps.drawing.OverlayType.MARKER,
+    //   drawingControl: true,
+    //   drawingControlOptions: {
+    //     position: google.maps.ControlPosition.TOP_CENTER,
+    //     drawingModes: [
+    //       google.maps.drawing.OverlayType.MARKER
+    //     ]
+    //   },
+    //   markerOptions: {
+    //     animation: google.maps.Animation.DROP
+    //   }
+    // };
+
     $scope.onClick = function(model) {
-        console.log("Clicked!");
-        model.show = !model.show;
+      console.log("Clicked!");
+      model.show = !model.show;
+    };
+
+    $scope.quickSpot = function(newQuick) {
+      this.showQuickSpot = false;
+      $scope.newQuick.name = newQuick.name;
+      $scope.newQuick.water_type = newQuick.waterType;
+      $scope.newQuick.technique = newQuick.technique;
+      $scope.newQuick.notes = newQuick.notes;
+      navigator.geolocation.getCurrentPosition(function(position) {
+        $scope.newQuick.lat = position.coords.latitude;
+        $scope.newQuick.lon = position.coords.longitude;
+        $http.post("/spots", { spot: $scope.newQuick }).success(function(data){
+          $scope.spots.unshift(data.spot);
+          $scope.loadMarkers();
+          $scope.initialCenter();
+          $scope.newQuick = $scope.spotModel;
+          console.log(data);
+        }).error(function(error, status){
+          console.log(error);
+          console.log(status);
+        });
+      });
+    };
+
+    $scope.editSpot = function(spot) {
+      this.showEdit = false;
+      $http.patch('/spots/' + spot.id, { spot: spot }).success(function(data){
+        $scope.spots.splice($scope.spots.indexOf(spot), 1, data.spot);
+      }).error(function(error, status){
+        console.log(error);
+        console.log(status);
+      });
+    }
+
+    $scope.deleteSpot = function(spot) {
+      $http({
+          method: 'DELETE',
+          url: '/spots/' + spot.id
+        })
+          .success(function() {
+            alert("Spot deleted")
+            $scope.spots.splice($scope.spots.indexOf(spot), 1);
+            $scope.loadMarkers();
+          })
+          .error(function(data, status) {
+            console.log(data);
+            console.log(status);
+          });
     };
 
     $scope.centerMapOnUser = function(){
       navigator.geolocation.getCurrentPosition(function(position) {
-          $scope.map.center = {
-              latitude: position.coords.latitude,
-              longitude: position.coords.longitude
+          $scope.map = { center: {
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude
+                                 },
+                         zoom: 15,
           };
           $scope.$apply();
         }, function(error) {
           console.log(error);
-        }
-      );
+      });
     };
 
     $scope.centerOnSpot = function(spot){
@@ -54,7 +129,8 @@
       }
     };
 
-    $scope.createMarkers = function(){
+    $scope.loadMarkers = function(){
+      $scope.spotMarkers = [];
       var newMarker = {};
       for(var i = 0; i < $scope.spots.length; i++){
         newMarker.id = parseFloat($scope.spots[i].id)
@@ -77,7 +153,7 @@
       $http.get("/spots").success(function(data){
         $scope.spots = data.spots;
         $scope.initialCenter();
-        $scope.createMarkers();
+        $scope.loadMarkers();
       }).error(function(data){
         console.log(data);
       });
