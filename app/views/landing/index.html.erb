@@ -1,6 +1,7 @@
 <main ng-app="secretSpots">
   <div class="container">
     <h1>Secret Spot Saver</h1>
+    <h4>Save your fishing locations, on the fly!</h4>
   </div>
 
   <div class="container" ng-controller="signInCtrl as user" ng-hide="isAuthenticated">
@@ -36,7 +37,7 @@
             <label for="inputPasswordConfirmation">Confirm Password</label>
             <input class="form-control" type="password" id="newPasswordConfirmation" placeholder="Confirm Password" ng-model="user.newUser.password_confirmation">
           </fieldset>
-          <input class="btn btn-default" type="submit" value="Sign up!" />
+          <input class="btn btn-primary" type="submit" value="Sign up!" />
           <button class="btn btn-default" ng-click="showSignUp = false">Cancel</button>
         </form>
       </div>
