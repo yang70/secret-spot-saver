@@ -15,6 +15,7 @@ gem 'apipie-rails'
 gem 'devise'
 gem 'angular_rails_csrf'
 gem 'ngannotate-rails'
+gem 'coveralls', require: false
 
 group :development, :test do
   gem 'byebug'
