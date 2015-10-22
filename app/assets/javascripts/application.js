@@ -13,6 +13,7 @@
 //= require angular
 //= require angular-devise
 //= require lodash
+//= require bootstrap
 //= require angular-simple-logger
 //= require angular-google-maps
 //= require secretSpotApp/app
