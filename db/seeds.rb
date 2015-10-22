@@ -14,7 +14,7 @@ lon = [-120.809838, -121.599248, -122.643913, -120.460374]
 
 water = %w(river small\ stream lake river)
 
-technique = %w(nymph dry\ w/\ dropper chironomid dry)
+technique = %w(nymph dry\ fly chironomid dry\ fly)
 
 notes = %w(Tons\ of\ big\ fish! Great\ place\ to\ learn! Nice\ lake\ with\ easy\ access\ and\ plenty\ of\ fish Great\ dry\ fly\ fishing!)
 
