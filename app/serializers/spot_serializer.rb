@@ -1,5 +1,6 @@
 class SpotSerializer < ActiveModel::Serializer
   attributes :id,
+             :user_id,
              :name,
              :lat,
              :lon,
