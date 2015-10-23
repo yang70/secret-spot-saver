@@ -60,6 +60,7 @@ class PageFormatTest < ActionDispatch::IntegrationTest
     click_on('Edit')
     sleep 1.5
     fill_in('Notes', with: 'Hello world!')
+    sleep 3
     click_on('Submit Edit')
     page.has_content?('Hello world!')
     click_on('Logout')
