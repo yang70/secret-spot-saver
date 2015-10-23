@@ -24,3 +24,19 @@ spot_3:
   water_type: river
   technique: dry with dropper
   notes: Notes for three.
+
+spot_4:
+  user: ruby
+  name: Spot Four
+  lat: 45
+  lon: -73
+  water_type: river
+  technique: dry with dropper
+
+spot_5:
+  user: aaron
+  name: Spot Five
+  lat: 45
+  lon: -73
+  water_type: river
+  technique: dry fly

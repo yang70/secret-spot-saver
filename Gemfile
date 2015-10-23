@@ -25,6 +25,10 @@ end
 group :test do
   gem 'minitest-rails'
   gem 'minitest-reporters'
+  gem 'capybara'
+  gem 'poltergeist'
+  gem 'launchy'
+  gem 'database_cleaner'
 end
 
 group :development do
