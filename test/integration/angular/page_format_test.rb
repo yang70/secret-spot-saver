@@ -20,6 +20,7 @@ class PageFormatTest < ActionDispatch::IntegrationTest
     page.has_no_content?('Confirm Password')
     click_on('Sign up!')
     page.has_content?('Confirm Password')
+    click_on('Cancel')
   end
 
   test 'can log in, displays list, sign out' do
