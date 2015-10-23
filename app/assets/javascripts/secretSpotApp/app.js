@@ -91,6 +91,7 @@
       this.showEdit = false;
       $http.patch('/spots/' + spot.id, { spot: spot }).success(function(data){
         $scope.spots.splice($scope.spots.indexOf(spot), 1, data.spot);
+        $scope.loadMarkers();
       }).error(function(error, status){
         console.log(error);
         console.log(status);
