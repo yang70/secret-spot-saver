@@ -146,9 +146,9 @@
         <div class="btn-group" role="group" ng-hide="showDelete">
           <button class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Options</button>
           <ul class="dropdown-menu">
-            <li><a ng-click="showEdit = !showEdit">Edit</a></li>
+            <li><button class="editButton" ng-click="showEdit = !showEdit">Edit</button></li>
             <li role="separator" class="divider"></li>
-            <li><a ng-click="showDelete = true">Delete</a></li>
+            <li><button class="deleteButton" ng-click="showDelete = true">Delete</button></li>
           </ul>
         </div>
         <div class="btn-group" role="group" ng-show="showDelete">
