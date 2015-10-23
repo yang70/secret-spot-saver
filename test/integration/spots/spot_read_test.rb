@@ -1,8 +1,17 @@
 require "test_helper"
+require "database_cleaner"
 
-class SpotsGetTest < ActionDispatch::IntegrationTest
+class SpotGetTest < ActionDispatch::IntegrationTest
+
   def setup
+    DatabaseCleaner.strategy = :truncation
+    DatabaseCleaner.start
+    Capybara.current_driver = Capybara.javascript_driver
     sign_in("ruby")
+  end
+
+  def teardown
+    DatabaseCleaner.clean
   end
 
   test 'sign in, get index returns all spots for user' do
@@ -44,7 +53,7 @@ class SpotsGetTest < ActionDispatch::IntegrationTest
     assert_equal 200, response.status
     assert_equal Mime::JSON, response.content_type
     spots = json(response.body)[:spots]
-    assert_equal spots.length, 1
+    assert_equal spots.length, 2
     assert_equal "Notes for three.", spots.detect { |spot| spot[:name] == "Spot Three" }[:notes]
   end
 end

@@ -1,8 +1,17 @@
 require "test_helper"
+require "database_cleaner"
 
 class SpotCreateTest < ActionDispatch::IntegrationTest
+
   def setup
+    DatabaseCleaner.strategy = :truncation
+    DatabaseCleaner.start
+    Capybara.current_driver = Capybara.javascript_driver
     sign_in("ruby")
+  end
+
+  def teardown
+    DatabaseCleaner.clean
   end
 
   test 'sign in, creates a new spot' do

@@ -75,6 +75,7 @@
           $scope.initialCenter();
           $scope.newQuick = $scope.spotModel;
           console.log(data);
+          console.log("spot created!");
         }).error(function(error, status){
           console.log(error);
           console.log(status);
@@ -181,7 +182,7 @@
       this.credentials = { email: '', password: '' };
 
       Auth.login(creds).then(function(user) {
-        alert('Successfully signed in user!')
+        console.log('Successfully signed in user!');
       }, function(error) {
         console.info('Error in authenticating user!');
         alert('Error in signing in user!');
@@ -239,7 +240,7 @@
     this.logout = function() {
       // var config = { headers: { 'X-HTTP-Method-Override': 'DELETE' } };
       Auth.logout().then(function(oldUser) {
-        alert("Successfully logged out!");
+        console.log('logged out')
       }, function(error) {
         alert("Error logging out.");
       });
