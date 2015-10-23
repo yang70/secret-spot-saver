@@ -13,6 +13,25 @@ body {
   background-color: #eee;
 }
 
+nav {
+  margin-top: -40px;
+}
+
+#navHeader {
+  color: white;
+}
+
+#welcomeHeader {
+  margin-left: 30px;
+}
+
+.page-header {
+  max-width: 400px;
+  padding: 15px;
+  margin: 0 auto;
+  text-align: center;
+}
+
 .container {
   max-width: 400px;
   padding: 15px;
@@ -45,4 +64,8 @@ body {
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+}
+
+.form-control {
+  margin-top: 5px;
 }

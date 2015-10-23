@@ -1,5 +1,18 @@
 <main ng-app="secretSpots">
-  <div class="container">
+  <nav class="navbar navbar-inverse">
+    <div id="welcomeHeader" class="navbar-header">
+      <h4 id="navHeader" >Welcome!</h4>
+    </div>
+    <div class="container-fluid navbar-left" ng-show="isAuthenticated">
+      <div class="navbar-header">
+        <h4 id="navHeader">Signed in as: {{currentUserEmail}}</h4>
+      </div>
+    </div>
+    <div class="container-fluid navbar-right" ng-controller="sessionCtrl as session" ng-show="isAuthenticated">
+      <button type="button" class="btn btn-default navbar-btn" ng-click="session.logOut()">Log out</button>
+    </div>
+  </nav>
+  <div class="page-header">
     <h1>Secret Spot Saver</h1>
     <h4>Save your fishing locations, on the fly!</h4>
   </div>
@@ -64,10 +77,24 @@
         </ui-gmap-markers>
       </ui-gmap-google-map>
     </div>
-    <button class="btn btn-default" ng-click="centerMapOnUser()">Find Me</button>
-    <button class="btn btn-default" ng-click="showQuickSpot = !showQuickSpot"><a ng-hide="showQuickSpot">Quick Spot</a><a ng-show="showQuickSpot">Cancel Quick Spot</a></button>
+    <div ng-hide="showQuickSpot" class="btn-group btn-group-justified" role="group">
+      <div class="btn-group" role="group">
+        <button type="button" class="btn btn-default" ng-click="centerMapOnUser()">Find Me</button>
+      </div>
+      <div class="btn-group" role="group">
+        <button type="button" class="btn btn-primary" ng-click="showQuickSpot = !showQuickSpot">Quick Spot</button>
+      </div>
+    </div>
     <div ng-show="showQuickSpot">
       <form name="newQuickForm" ng-submit="quickSpot(newQuick)" novalidate>
+        <div class="btn-group btn-group-justified" role="group">
+          <div class="btn-group" role="group">
+            <input class="btn btn-success" type="submit" value="Create Spot" />
+          </div>
+          <div class="btn-group" role="group">
+            <button class="btn btn-warning" ng-click="showQuickSpot = !showQuickSpot">Cancel Quick Spot</button>
+          </div>
+        </div>
         <h4>Spot will be created at current location</h4>
         <fieldset class="form-group">
           <input class="form-control" ng-model="newQuick.name" type="text" placeholder="Spot Name" title="Name" />
@@ -96,18 +123,48 @@
         <fieldset class="form-group">
           <textarea class="form-control" name="notes" placeholder="Notes" ng-model="newQuick.notes" cols="30" rows="10"></textarea>
         </fieldset>
-        <input class="btn btn-default" type="submit" value="Submit" />
       </form>
     </div>
     <div ng-repeat="spot in spots">
       <h3>{{spot.name}}</h3>
       <p>{{spot.notes}}</p>
-      <button class="btn btn-default" ng-click="centerOnSpot(spot)">Show in map</button>
-      <button class="btn btn-default" ng-click="directions(spot)">Directions</button>
-      <button class="btn btn-default" ng-click="deleteSpot(spot)">Delete</button>
-      <button class="btn btn-default" ng-click="showEdit = !showEdit"><a ng-hide="showEdit">Edit Spot</a><a ng-show="showEdit">Cancel Edit</a></button>
+      <div class="btn-group btn-group-justified" role="group" ng-hide="showEdit">
+        <div class="btn-group" role="group" ng-hide="showDelete">
+          <button class="btn btn-default" ng-click="centerOnSpot(spot)">Show in map</button>
+        </div>
+        <div class="btn-group" role="group" ng-hide="showDelete">
+          <button class="btn btn-default" ng-click="directions(spot)">Directions</button>
+        </div>
+        <div class="btn-group" role="group" ng-hide="showDelete">
+          <button class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Options</button>
+          <ul class="dropdown-menu">
+            <li><a ng-click="showEdit = !showEdit">Edit</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a ng-click="showDelete = true">Delete</a></li>
+          </ul>
+        </div>
+        <div class="btn-group" role="group" ng-show="showDelete">
+          <button class="btn btn-danger" ng-click="deleteSpot(spot)">Confirm delete?</button>
+        </div>
+        <div class="btn-group" role="group" ng-show="showDelete">
+          <button class="btn btn-default" ng-click="showDelete = false">Cancel delete</button>
+        </div>
+      </div>
+
+<!--  <div ng-hide="showQuickSpot" class="btn-group" role="group">
+          <button class="btn btn-default" ng-click="deleteSpot(spot)">Delete</button>
+        </div> -->
+
       <div ng-show="showEdit">
         <form name="editSpotForm" ng-submit="editSpot(spot)" novalidate>
+          <div class="btn-group btn-group-justified" role="group">
+            <div class="btn-group" role="group">
+              <input class="btn btn-success" type="submit" value="Submit Edit" />
+            </div>
+            <div class="btn-group" role="group">
+              <button class="btn btn-warning" ng-click="showEdit = !showEdit">Cancel Edit</button>
+            </div>
+          </div>
           <fieldset class="form-group">
             <input class="form-control" ng-model="spot.name" type="text" placeholder="Spot Name" title="Name" />
           </fieldset>
@@ -135,7 +192,6 @@
           <fieldset class="form-group">
             <textarea class="form-control" name="notes" placeholder="Notes" ng-model="spot.notes" cols="30" rows="10"></textarea>
           </fieldset>
-          <input class="btn btn-default" type="submit" value="Submit" />
         </form>
       </div>
     </div>

@@ -11,7 +11,7 @@
       });
     })
 
-  app.controller('SpotsController', ['Auth', '$scope', '$http', '$window', function(Auth, $scope, $http, $window){
+  app.controller('SpotsController', ['Auth', '$scope', '$http', '$window',function(Auth, $scope, $http, $window){
     $scope.spots = [];
     $scope.currentUserId = '';
     $scope.spotModel = { user_id: '',
@@ -56,7 +56,7 @@
     $scope.onClick = function(model) {
       console.log("Clicked!");
       model.show = !model.show;
-      console.log()
+      console.log($scope.currentUserEmail);
     };
 
     $scope.quickSpot = function(newQuick) {
@@ -103,7 +103,7 @@
           url: '/spots/' + spot.id
         })
           .success(function() {
-            alert("Spot deleted")
+            console.log('spot deleted')
             $scope.spots.splice($scope.spots.indexOf(spot), 1);
             $scope.loadMarkers();
           })
@@ -214,6 +214,12 @@
                                  '$rootScope',
                                  '$location',
    function(Auth, $http, $scope, $rootScope, $location) {
+
+    $scope.currentUserEmail = '';
+
+    $scope.$on('devise:login', function(event, currentUser){
+      $scope.currentUserEmail = currentUser.email;
+    });
 
     Auth.currentUser().then(function(user){
       console.log("is authenticated");
