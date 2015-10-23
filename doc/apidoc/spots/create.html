@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>API documentation</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <link type='text/css' rel='stylesheet' href='../../apidoc/stylesheets/bundled/bootstrap.min.css'/>
+<link type='text/css' rel='stylesheet' href='../../apidoc/stylesheets/bundled/prettify.css'/>
+<link type='text/css' rel='stylesheet' href='../../apidoc/stylesheets/bundled/bootstrap-responsive.min.css'/>
+  <link type='text/css' rel='stylesheet' href='../../apidoc/stylesheets/application.css'/>
+  <!-- IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div id='container'>
+        <ul class='breadcrumb'>
+  <li>
+    <a href='../../apidoc.html'>SecretSpotSaver 1.0</a>
+    <span class='divider'>/</span>
+  </li>
+  <li>
+    <a href='../../apidoc/spots.html'>
+      Spots
+      
+    </a>
+    <span class='divider'>/</span>
+  </li>
+  <li class='active'>create</li>
+  
+
+</ul>
+
+  <div class='page-header'>
+    <h1>
+      POST /spots
+      <br>
+      <small>Create a spot</small>
+    </h1>
+  </div>
+
+<div>
+
+  
+
+
+  <h2>Errors</h2>
+    422
+    
+    <br>
+
+
+  <h2>Examples</h2>
+    <pre class="prettyprint">POST /spots
+{
+  &quot;spot&quot;: {
+    &quot;name&quot;: &quot;My Spot&quot;,
+    &quot;lat&quot;: 45,
+    &quot;lon&quot;: -73,
+    &quot;water_type&quot;: &quot;small stream&quot;,
+    &quot;technique&quot;: &quot;dry fly&quot;,
+    &quot;notes&quot;: &quot;Great spot! multiple strikes on size 12 orange stimulator when the sun hit the water around 11am.  Slippery rocks, bring traction shoes next time&quot;
+  }
+}
+201
+{
+  &quot;spot&quot;: {
+    &quot;id&quot;: 434526334,
+    &quot;name&quot;: &quot;My Spot&quot;,
+    &quot;lat&quot;: 45,
+    &quot;lon&quot;: -73,
+    &quot;water_type&quot;: &quot;small stream&quot;,
+    &quot;technique&quot;: &quot;dry fly&quot;,
+    &quot;notes&quot;: &quot;Great spot! multiple strikes on size 12 orange stimulator when the sun hit the water around 11am.  Slippery rocks, bring traction shoes next time&quot;,
+    &quot;created_at&quot;: &quot;2015-10-19T22:30:56.430Z&quot;,
+    &quot;updated_at&quot;: &quot;2015-10-19T22:30:56.430Z&quot;
+  }
+}</pre>
+
+  <h2>Params</h2>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Param name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>spot </strong><br>
+      <small>
+        optional
+        
+      </small>
+    </td>
+    <td>
+      
+        <br>
+        Value: 
+<p>Must be a Hash</p>
+
+
+
+    </td>
+
+  </tr>
+
+    <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>spot[lat] </strong><br>
+      <small>
+        optional
+        
+      </small>
+    </td>
+    <td>
+      
+
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>spot[lon] </strong><br>
+      <small>
+        optional
+        
+      </small>
+    </td>
+    <td>
+      
+
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>spot[name] </strong><br>
+      <small>
+        optional
+        
+      </small>
+    </td>
+    <td>
+      
+
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>spot[notes] </strong><br>
+      <small>
+        optional
+        
+      </small>
+    </td>
+    <td>
+      
+
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>spot[technique] </strong><br>
+      <small>
+        optional
+        
+      </small>
+    </td>
+    <td>
+      
+
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>spot[water_type] </strong><br>
+      <small>
+        optional
+        
+      </small>
+    </td>
+    <td>
+      
+
+
+    </td>
+
+  </tr>
+
+  
+
+
+    </tbody>
+  </table>
+
+
+
+</div>
+
+
+        
+      </div>
+    </div>
+    <hr>
+    <footer></footer>
+  </div>
+  <script type='text/javascript' src='../../apidoc/javascripts/bundled/jquery-1.7.2.js'></script>
+<script type='text/javascript' src='../../apidoc/javascripts/bundled/bootstrap-collapse.js'></script>
+<script type='text/javascript' src='../../apidoc/javascripts/bundled/prettify.js'></script>
+<script type='text/javascript' src='../../apidoc/javascripts/apipie.js'></script>
+</body>
+</html>
