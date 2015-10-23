@@ -5,17 +5,59 @@
   height: 330px;
   width: 330px;
   padding: auto;
+  margin: 0 auto 10px auto;
 }
 
 body {
   padding-top: 40px;
   padding-bottom: 40px;
-  background-color: #eee;
+  background-color: #cccccc;
+}
+
+nav {
+  margin-top: -40px;
+}
+
+#navHeader {
+  color: white;
+}
+
+#welcomeHeader {
+  margin-left: 30px;
+}
+
+#logoutContainer {
+  padding-bottom: 10px;
+  max-width: 300px;
+}
+
+#notesElement {
+  max-width: 60px;
+}
+
+.editButton {
+  background-color: white;
+  border: none;
+  width: 150px;
+}
+
+.deleteButton {
+  background-color: white;
+  border: none;
+  width: 150px;
+}
+
+.page-header {
+  max-width: 400px;
+  border: 0;
+  padding: 0 15px;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .container {
   max-width: 400px;
-  padding: 15px;
+  padding: 0 15px;
   margin: 0 auto;
   text-align: center;
 }
@@ -45,4 +87,8 @@ body {
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+}
+
+.form-control {
+  margin-top: 5px;
 }

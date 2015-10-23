@@ -11,7 +11,7 @@
       });
     })
 
-  app.controller('SpotsController', ['Auth', '$scope', '$http', '$window', function(Auth, $scope, $http, $window){
+  app.controller('SpotsController', ['Auth', '$scope', '$http', '$window',function(Auth, $scope, $http, $window){
     $scope.spots = [];
     $scope.currentUserId = '';
     $scope.spotModel = { user_id: '',
@@ -56,7 +56,7 @@
     $scope.onClick = function(model) {
       console.log("Clicked!");
       model.show = !model.show;
-      console.log()
+      console.log($scope.currentUserEmail);
     };
 
     $scope.quickSpot = function(newQuick) {
@@ -91,6 +91,7 @@
       this.showEdit = false;
       $http.patch('/spots/' + spot.id, { spot: spot }).success(function(data){
         $scope.spots.splice($scope.spots.indexOf(spot), 1, data.spot);
+        $scope.loadMarkers();
       }).error(function(error, status){
         console.log(error);
         console.log(status);
@@ -103,7 +104,7 @@
           url: '/spots/' + spot.id
         })
           .success(function() {
-            alert("Spot deleted")
+            console.log('spot deleted')
             $scope.spots.splice($scope.spots.indexOf(spot), 1);
             $scope.loadMarkers();
           })
@@ -150,6 +151,7 @@
         newMarker.waterType = $scope.spots[i].water_type;
         newMarker.technique = $scope.spots[i].technique;
         newMarker.createdOn = $scope.spots[i].created_at;
+        newMarker.notes = $scope.spots[i].notes;
         newMarker.show = false;
         $scope.spotMarkers.push(newMarker);
         console.log(newMarker)
@@ -215,6 +217,13 @@
                                  '$location',
    function(Auth, $http, $scope, $rootScope, $location) {
 
+    $scope.currentUserEmail = '';
+    $scope.showLogout = false;
+
+    $scope.$on('devise:login', function(event, currentUser){
+      $scope.currentUserEmail = currentUser.email;
+    });
+
     Auth.currentUser().then(function(user){
       console.log("is authenticated");
       $rootScope.isAuthenticated = true;
@@ -237,7 +246,7 @@
       $rootScope.isAuthenticated = false;
     });
 
-    this.logout = function() {
+    $scope.logout = function() {
       // var config = { headers: { 'X-HTTP-Method-Override': 'DELETE' } };
       Auth.logout().then(function(oldUser) {
         console.log('logged out')
