@@ -7,6 +7,7 @@ class PageFormatTest < ActionDispatch::IntegrationTest
     DatabaseCleaner.strategy = :truncation
     DatabaseCleaner.start
     Capybara.current_driver = Capybara.javascript_driver
+    sign_out
   end
 
   def teardown
