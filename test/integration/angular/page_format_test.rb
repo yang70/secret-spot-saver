@@ -15,6 +15,7 @@ class PageFormatTest < ActionDispatch::IntegrationTest
   end
 
   test 'root path shows sign in, sign up' do
+    sleep 2
     visit root_path
     page.has_content?('Please sign in')
     page.has_no_content?('Confirm Password')
@@ -24,6 +25,7 @@ class PageFormatTest < ActionDispatch::IntegrationTest
   end
 
   test 'can log in, displays list, sign out' do
+    sleep 2
     visit root_path
     fill_in('Enter email', with: 'ruby@example.com')
     fill_in('Password', with: 'password')
