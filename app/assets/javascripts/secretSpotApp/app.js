@@ -150,6 +150,7 @@
         newMarker.waterType = $scope.spots[i].water_type;
         newMarker.technique = $scope.spots[i].technique;
         newMarker.createdOn = $scope.spots[i].created_at;
+        newMarker.notes = $scope.spots[i].notes;
         newMarker.show = false;
         $scope.spotMarkers.push(newMarker);
         console.log(newMarker)
@@ -216,6 +217,7 @@
    function(Auth, $http, $scope, $rootScope, $location) {
 
     $scope.currentUserEmail = '';
+    $scope.showLogout = false;
 
     $scope.$on('devise:login', function(event, currentUser){
       $scope.currentUserEmail = currentUser.email;
@@ -243,7 +245,7 @@
       $rootScope.isAuthenticated = false;
     });
 
-    this.logout = function() {
+    $scope.logout = function() {
       // var config = { headers: { 'X-HTTP-Method-Override': 'DELETE' } };
       Auth.logout().then(function(oldUser) {
         console.log('logged out')

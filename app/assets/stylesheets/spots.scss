@@ -5,12 +5,13 @@
   height: 330px;
   width: 330px;
   padding: auto;
+  margin: 0 auto 10px auto;
 }
 
 body {
   padding-top: 40px;
   padding-bottom: 40px;
-  background-color: #eee;
+  background-color: #cccccc;
 }
 
 nav {
@@ -25,16 +26,26 @@ nav {
   margin-left: 30px;
 }
 
+#logoutContainer {
+  padding-bottom: 10px;
+  max-width: 300px;
+}
+
+#notesElement {
+  max-width: 60px;
+}
+
 .page-header {
   max-width: 400px;
-  padding: 15px;
+  border: 0;
+  padding: 0 15px;
   margin: 0 auto;
   text-align: center;
 }
 
 .container {
   max-width: 400px;
-  padding: 15px;
+  padding: 0 15px;
   margin: 0 auto;
   text-align: center;
 }

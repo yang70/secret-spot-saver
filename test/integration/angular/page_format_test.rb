@@ -32,6 +32,7 @@ class PageFormatTest < ActionDispatch::IntegrationTest
     click_on('Submit')
     page.has_content?('Spot Two')
     click_on('Logout')
+    click_on('Confirm logout?')
     page.has_content?('Please sign in')
   end
 
@@ -42,9 +43,10 @@ class PageFormatTest < ActionDispatch::IntegrationTest
     click_on('Submit')
     click_on('Quick Spot')
     fill_in('Spot Name', with: 'Hello world!')
-    click_on('Submit')
+    click_on('Create Spot')
     page.has_content?('Hello world!')
     click_on('Logout')
+    click_on('Confirm logout?')
   end
 
   test 'can log in, edit' do
@@ -54,11 +56,13 @@ class PageFormatTest < ActionDispatch::IntegrationTest
     click_on('Submit')
     page.has_no_content?('Hello world!')
     sleep 1.5
-    first(:button, 'Edit Spot').click
+    first(:button, 'Options').click
+    click_on('Edit')
     fill_in('Notes', with: 'Hello world!')
-    click_on('Submit')
+    click_on('Submit Edit')
     page.has_content?('Hello world!')
     click_on('Logout')
+    click_on('Confirm logout?')
   end
 
   test 'can log in, delete spot' do
@@ -67,9 +71,12 @@ class PageFormatTest < ActionDispatch::IntegrationTest
     fill_in('Password', with: 'password')
     click_on('Submit')
     sleep 1.5
-    first(:button, 'Delete').click
+    first(:button, 'Options').click
+    click_on('Delete')
+    click_on('Confirm delete?')
     page.has_no_content?('Notes for one.')
     click_on('Logout')
+    click_on('Confirm logout?')
   end
 
   # test 'click on directions' do
