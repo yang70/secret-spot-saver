@@ -58,6 +58,7 @@ class PageFormatTest < ActionDispatch::IntegrationTest
     sleep 1.5
     first(:button, 'Options').click
     click_on('Edit')
+    sleep 1.5
     fill_in('Notes', with: 'Hello world!')
     click_on('Submit Edit')
     page.has_content?('Hello world!')
