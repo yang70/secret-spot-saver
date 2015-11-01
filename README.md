@@ -13,11 +13,11 @@ The objective of this single page application is to be able to save information 
 
 Additionally the web interface was designed to be a quick single page application that utilizes AJAX calls and dynamic HTML to prevent full page refreshes.
 
-<img src="https://s3-us-west-2.amazonaws.com/spot-saver/readme-images/2015-11-01+12.51.17.png" style="width: 50px" />
-<img src="https://s3-us-west-2.amazonaws.com/spot-saver/readme-images/2015-11-01+12.54.16.png" style="width: 50px" />
+<img src="https://s3-us-west-2.amazonaws.com/spot-saver/readme-images/2015-11-01+12.51.17.png" width="50px" />
+<img src="https://s3-us-west-2.amazonaws.com/spot-saver/readme-images/2015-11-01+12.54.16.png" width="50px" />
 
-<img src="https://s3-us-west-2.amazonaws.com/spot-saver/readme-images/2015-11-01+12.54.50.png" style="width: 50px" />
-<img src="https://s3-us-west-2.amazonaws.com/spot-saver/readme-images/2015-11-01+12.54.59.png" style="width: 50px" />
+<img src="https://s3-us-west-2.amazonaws.com/spot-saver/readme-images/2015-11-01+12.54.50.png" width="50px" />
+<img src="https://s3-us-west-2.amazonaws.com/spot-saver/readme-images/2015-11-01+12.54.59.png" width="50px" />
 
 ## Technology Used
 At the most basic, this application utilizes a [Ruby on Rails](http://rubyonrails.org/) back-end as an API for an [Angular.JS](https://angularjs.org) front end, single page application.
