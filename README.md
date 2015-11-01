@@ -11,7 +11,7 @@ by [Matthew Yang](http://matthewgyang.com)
 ## Description
 The objective of this single page application is to be able to save information about a fishing spot including latitude/longitude, water type, fishing technique and notes.  These locations are kept secure using an authentication and authorization system that only allows a registered user to see his/her own created spots.
 
-Additionally the web interface was designed to be a quick single page application that utilizes AJAX calls and dynamic HTML to prevent full page refreshes.
+Additionally the web interface was designed using AngularJS to be a quick single page application that utilizes AJAX calls to a Rails API and dynamic HTML to prevent full page refreshes.
 
 <img src="https://s3-us-west-2.amazonaws.com/spot-saver/readme-images/2015-11-01+12.51.17.png" width="200px" />
 <img src="https://s3-us-west-2.amazonaws.com/spot-saver/readme-images/2015-11-01+12.54.16.png" width="200px" />
