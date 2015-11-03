@@ -12,6 +12,7 @@
 //
 //= require angular
 //= require angular-devise
+//= require angular-flash.min
 //= require lodash
 //= require jquery
 //= require bootstrap

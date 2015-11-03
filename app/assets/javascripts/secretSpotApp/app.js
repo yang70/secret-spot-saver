@@ -1,17 +1,20 @@
 (function(){
   var app = angular.module('secretSpots', [
                                            'Devise',
-                                           'uiGmapgoogle-maps'
+                                           'uiGmapgoogle-maps',
+                                           'angular-flash.service',
+                                           'angular-flash.flash-alert-directive'
                                            ])
-    .config(function(uiGmapGoogleMapApiProvider) {
+    .config(function(uiGmapGoogleMapApiProvider, flashProvider) {
       uiGmapGoogleMapApiProvider.configure({
         key: 'AIzaSyAb4FKzgUIBNHbKfAbfwbEjJbH_ORh_WSQ',
         v: '3.20', //defaults to latest 3.X anyhow
         libraries: 'weather,geometry,visualization,drawing'
       });
+      flashProvider.errorClassnames.push('alert-danger');
     })
 
-  app.controller('SpotsController', ['Auth', '$scope', '$http', '$window',function(Auth, $scope, $http, $window){
+  app.controller('SpotsController', ['Auth', '$scope', '$http', '$window', 'flash', function(Auth, $scope, $http, $window, flash){
     $scope.spots = [];
     $scope.currentUserId = '';
     $scope.spotModel = { user_id: '',
@@ -76,6 +79,7 @@
           $scope.newQuick = $scope.spotModel;
           console.log(data);
           console.log("spot created!");
+          flash.success = "Spot created!"
         }).error(function(error, status){
           console.log(error);
           console.log(status);
@@ -92,6 +96,7 @@
       $http.patch('/spots/' + spot.id, { spot: spot }).success(function(data){
         $scope.spots.splice($scope.spots.indexOf(spot), 1, data.spot);
         $scope.loadMarkers();
+        flash.success = 'Spot updated!'
       }).error(function(error, status){
         console.log(error);
         console.log(status);
@@ -104,7 +109,8 @@
           url: '/spots/' + spot.id
         })
           .success(function() {
-            console.log('spot deleted')
+            console.log('spot deleted');
+            flash.success = 'Spot deleted!'
             $scope.spots.splice($scope.spots.indexOf(spot), 1);
             $scope.loadMarkers();
           })
@@ -162,6 +168,7 @@
     }
 
     $scope.$on('devise:login', function(event, currentUser){
+      flash.success = "Successfully signed in!";
       $scope.currentUserId = currentUser.id;
       $http.get("/spots").success(function(data){
         $scope.spots = data.spots;
@@ -173,11 +180,12 @@
     })
   }]);
 
-  app.controller('signInCtrl', ['Auth', '$rootScope', '$scope', '$location', function(Auth, $rootScope, $scope, $location) {
+  app.controller('signInCtrl', ['Auth', '$rootScope', '$scope', '$location', 'flash', function(Auth, $rootScope, $scope, $location, flash) {
       this.credentials = { email: '', password: '' };
       this.newUser = { email: '', password: '', password_confirmation: '' };
 
     $scope.showSignUp = false;
+    var errorMsg;
 
     this.signIn = function() {
       creds = this.credentials;
@@ -186,18 +194,20 @@
       Auth.login(creds).then(function(user) {
         console.log('Successfully signed in user!');
       }, function(error) {
-        console.info('Error in authenticating user!');
-        alert('Error in signing in user!');
+        console.log(error);
+        flash.to('signup-alert').error = error.data.error;
       });
     };
 
     this.signUp = function() {
       newCreds = this.newUser;
       this.newUser = { email: '', password: '', password_confirmation: '' };
+      errorMsg = 'Sign Up Error! ';
 
       Auth.register(newCreds).then(function(registeredUser){
         $scope.showSignUp = false;
         Auth.currentUser().then(function(user){
+          flash.success = 'Signed up!'
           $rootScope.isAuthenticated = true;
           console.log('New user logged in');
         }, function(error){
@@ -206,6 +216,10 @@
         alert('Successfully signed up!');
       }, function(error){
         console.log(error);
+        $.each(error.data.errors, function(index, value) {
+          errorMsg += (index + ' ' + value + ': ');
+        })
+        flash.to('signup-alert').error = errorMsg;
       });
     }
   }]);
@@ -215,7 +229,8 @@
                                  '$scope',
                                  '$rootScope',
                                  '$location',
-   function(Auth, $http, $scope, $rootScope, $location) {
+                                 'flash',
+   function(Auth, $http, $scope, $rootScope, $location, flash) {
 
     $scope.currentUserEmail = '';
     $scope.showLogout = false;
@@ -242,7 +257,8 @@
     });
 
     $scope.$on('devise:logout', function(event, oldCurrentUser){
-      console.log('devise log out')
+      flash.success = 'Logged out!';
+      console.log('devise log out');
       $rootScope.isAuthenticated = false;
     });
 
