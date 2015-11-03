@@ -12,6 +12,16 @@
       <button type="button" class="btn btn-default navbar-btn" ng-controller="sessionCtrl" ng-click="logOut()">Log out</button>
     </div> -->
   </nav>
+  <div flash-alert active-class="in alert" class="fade alert">
+    <strong class="alert-heading"></strong>
+    <span class="alert-message">{{flash.message}}</span>
+  </div>
+  <div id="signup-alert" flash-alert active-class="in alert" class="alert fade" duration="0">
+    <!-- Manually hide the alert with `hide()` -->
+    <button type="button" class="close" ng-click="hide()">&times;</button>
+    <strong class="alert-heading"></strong>
+    <span class="alert-message">{{flash.message}}</span>
+  </div>
   <div class="page-header">
     <h1>Secret Spot Saver</h1>
     <h4>Save your fishing locations, on the fly!</h4>

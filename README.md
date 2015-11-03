@@ -14,7 +14,7 @@ The objective of this single page application is to be able to save information 
 Additionally the web interface was designed using AngularJS to be a quick single page application that utilizes AJAX calls to a Rails API and dynamic HTML to prevent full page refreshes.
 
 <img src="https://s3-us-west-2.amazonaws.com/spot-saver/readme-images/2015-11-01+12.51.17.png" width="200px" />
-<img src="https://s3-us-west-2.amazonaws.com/spot-saver/readme-images/2015-11-01+12.54.16.png" width="200px" />
+<img src="https://s3-us-west-2.amazonaws.com/spot-saver/readme-images/signin-flash.PNG" width="200px" />
 <img src="https://s3-us-west-2.amazonaws.com/spot-saver/readme-images/2015-11-01+12.55.25.png" width="200px" />
 
 <img src="https://s3-us-west-2.amazonaws.com/spot-saver/readme-images/2015-11-01+12.54.50.png" width="200px" />
@@ -48,15 +48,15 @@ I then utilized the [Active Model Serializers](https://github.com/rails-api/acti
 # app/serializers/spot_serializer.rb
 class SpotsSerializer < ActiveModel::Serializer
   attributes :id,
-  			   :user_id,
-  			   :name,
-  			   :lat,
-  			   :lon,
-  			   :water_type,
-  			   :technique,
-  			   :notes,
-  			   :created_at,
-  			   :updated_at
+           :user_id,
+           :name,
+           :lat,
+           :lon,
+           :water_type,
+           :technique,
+           :notes,
+           :created_at,
+           :updated_at
 end
 ```
 
@@ -103,6 +103,23 @@ This information was then successfully saved via the API and redisplayed via AJA
 
 **NOTE:**
 As of this writing, one of the main features I planned during design of being able to add a spot location after the fact (not current location) is not working.  After spending almost a full day trying to get it working I decided to move on, especially since the core of the this application was created in a 4 day time-frame.
+
+### Angula Flash
+Flash messages have been incorporated using [Angular Flash](https://github.com/wmluke/angular-flash).
+
+<img src="https://s3-us-west-2.amazonaws.com/spot-saver/readme-images/signin-flash.PNG" width="200px" />
+
+Here's an example of the JavaScript for displaying an error message:
+
+```javascript
+...
+}, function(error){
+  $.each(error.data.errors, function(index, value) {
+    errorMsg += (index + ' ' + value + ': ');
+  })
+  flash.to('signup-alert').error = errorMsg;
+});
+```
 
 ### Angular Rails CSRF
 In order to access the built in [Angular Cross Site Request Forgery](https://docs.angularjs.org/api/ng/service/$http) I added the [Angular Rails CSRF gem](https://github.com/jsanders/angular_rails_csrf) that will send the token in a header.
