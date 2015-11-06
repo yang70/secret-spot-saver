@@ -104,7 +104,7 @@ This information was then successfully saved via the API and redisplayed via AJA
 **NOTE:**
 As of this writing, one of the main features I planned during design of being able to add a spot location after the fact (not current location) is not working.  After spending almost a full day trying to get it working I decided to move on, especially since the core of the this application was created in a 4 day time-frame.
 
-### Angula Flash
+### Angular Flash
 Flash messages have been incorporated using [Angular Flash](https://github.com/wmluke/angular-flash).
 
 <img src="https://s3-us-west-2.amazonaws.com/spot-saver/readme-images/signin-flash.PNG" width="200px" />
