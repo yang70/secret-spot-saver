@@ -17,6 +17,7 @@ gem 'angular_rails_csrf'
 gem 'ngannotate-rails'
 gem 'coveralls', require: false
 gem 'pundit'
+gem 'rails_admin'
 
 group :development, :test do
   gem 'byebug'
