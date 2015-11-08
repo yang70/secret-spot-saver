@@ -1,6 +1,8 @@
 language: ruby
 rvm:
   - 2.2.3
+services:
+  - redis-server
 deploy:
   provider: heroku
   api_key:

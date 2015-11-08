@@ -17,6 +17,9 @@ gem 'angular_rails_csrf'
 gem 'ngannotate-rails'
 gem 'coveralls', require: false
 gem 'pundit'
+gem 'rack-timeout'
+gem 'sidekiq'
+gem 'unicorn'
 
 group :development, :test do
   gem 'byebug'
