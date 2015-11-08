@@ -11,6 +11,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     super
     WelcomeWorker.perform_async(@user.id) unless @user.invalid?
+    NotifyWorker.perform_async(@user.id) unless @user.invalid?
   end
 
   # GET /resource/edit
