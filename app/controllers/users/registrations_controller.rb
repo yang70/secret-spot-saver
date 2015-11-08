@@ -10,7 +10,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     super
-    WelcomeWorker.perform_async(@user.id) unless @user.invalid?
+    UserMailer.new_welcome_email(@user).deliver_later
+    # WelcomeWorker.perform_async(@user.id) unless @user.invalid?
   end
 
   # GET /resource/edit
