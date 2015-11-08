@@ -129,6 +129,13 @@ One obstacle that I again had encountered in a previous Rails/Angular applicatio
 ### NGAnnotate Rails
 When serving Angular code from a Rails application using the Rails Asset Pipeline, you run into issues when the code is minified.  In order to get around this I installed the [NGAnnotate Rails gem](https://github.com/kikonen/ngannotate-rails), which is a gem version of [NG Annotate](https://github.com/olov/ng-annotate).
 
+### Background Jobs (Sidekiq/Redis/Sendgrid)
+[ActionMailer](http://guides.rubyonrails.org/action_mailer_basics.html) has been configured along with [Sidekiq](https://github.com/mperham/sidekiq) (which uses [Redis](http://redis.io/)) and [Sendgrid](https://sendgrid.com/) on [Heroku](https://dashboard.heroku.com/) to send a welcome email to new users on successful registration.  It also sends a notification email to myself advising of a new registration.
+
+This is done in a background job by creating a Sidekiq worker and calling that worker to execute asynchronously after yielding to `super` in the `registrations_controller.rb` that was generated from devise.
+
+I also followed [these](https://coderwall.com/p/fprnhg/free-background-jobs-on-heroku) instructions to use the Unicorn server on Heroku and generate workers within the same dyno (therefore free) instead of requiring a second dyno.
+
 ### Styling
 For this project I incorporated [Bootstrap](http://getbootstrap.com/) in order to make it mobile focused with large buttons and layout.
 
