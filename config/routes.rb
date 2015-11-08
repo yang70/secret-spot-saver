@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   apipie
-  devise_for :users
+  devise_for :users, controllers: {
+    registrations: 'users/registrations'
+  }
   root 'landing#index'
 
   resources :spots
