@@ -84,7 +84,7 @@ I installed the [Angular Devise](https://github.com/cloudspace/angular_devise) J
 
 
 ### Pundit
-In incorporated the [Pundit gem](https://github.com/elabs/pundit) for authorization and developed a simple `spot` policy which is stored in `app/policies`.  Through simple integration in the controllers, you can verify that only authorized information is returned during an AJAX request:
+I incorporated the [Pundit gem](https://github.com/elabs/pundit) for authorization and developed a simple `spot` policy which is stored in `app/policies`.  Through simple integration in the controllers, you can verify that only authorized information is returned during an AJAX request:
 
 ```ruby
 # index action from app/controllers/spots_controller.rb
