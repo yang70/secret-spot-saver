@@ -6,6 +6,8 @@
 
 #### A web app to keep all of your favorite fishing spots secret and secure.  See nearby locations and get directions via Google Maps integration.
 
+The app can be accessed here:  [https://spot-saver.herokuapp.com](https://spot-saver.herokuapp.com)
+
 by [Matthew Yang](http://matthewgyang.com)
 
 ## Description
@@ -39,7 +41,7 @@ I started by generating a new Rails application and modeling my resource, which 
 I then generated a `SpotsController` and started creating the CRUD actions.  However because I knew this would be accessed as an API I made sure that instead or rendering views I returned a [JSON](http://www.json.org/) object.  Fortunately Rails makes this incredibly simple by allowing you to write a statment like `render json: spot`, which will convert an ActiveRecord object to JSON and package it up into a response.
 
 **NOTE:**
-I considered using an API versioning strategy like I discussed in my [blog](http://www.matthewgyang.com/articles/5), however with limited time to get this up and running I left that as a future refactor.
+I considered using an API versioning strategy, however with limited time to get this up and running I left that as a future refactor.
 
 ### Active Model Serializers
 I then utilized the [Active Model Serializers](https://github.com/rails-api/active_model_serializers) gem, which allows you to format your JSON objects to your liking, returning only the information you specify and in the format you decide.
@@ -124,7 +126,7 @@ Here's an example of the JavaScript for displaying an error message:
 ### Angular Rails CSRF
 In order to access the built in [Angular Cross Site Request Forgery](https://docs.angularjs.org/api/ng/service/$http) I added the [Angular Rails CSRF gem](https://github.com/jsanders/angular_rails_csrf) that will send the token in a header.
 
-One obstacle that I again had encountered in a previous Rails/Angular application was an issue with the CSRF token being invalidated after a Devise log in.  See my [blog post](http://www.matthewgyang.com/articles/6) about this for more information on the work-around.
+One obstacle that I again had encountered in a previous Rails/Angular application was an issue with the CSRF token being invalidated after a Devise log in.  See my [blog post](http://www.matthewgyang.com/posts/1) about this for more information on the work-around.
 
 ### NGAnnotate Rails
 When serving Angular code from a Rails application using the Rails Asset Pipeline, you run into issues when the code is minified.  In order to get around this I installed the [NGAnnotate Rails gem](https://github.com/kikonen/ngannotate-rails), which is a gem version of [NG Annotate](https://github.com/olov/ng-annotate).
